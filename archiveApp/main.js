@@ -27,8 +27,25 @@ request.onload = function () {
         // Go through images one by one
         data.forEach(image => {
             const card = document.createElement('div');
-            card.innerText = image.imagethumb;
+            card.setAttribute('class', 'card');
+
+            const title = document.createElement('h3');
+            title.setAttribute('class', 'title');
+            title.innerText = image.title;
+
+            const description = document.createElement('p');
+            description.setAttribute('class', 'description');
+            description.innerText = image.description;
+
+            // Create an image html tag and set its source to the api destination
+            const img = document.createElement("img");
+            img.id = "imagesForSite";
+            img.src = image.imagethumb;
+
             app.appendChild(card);
+            card.appendChild(title);
+            card.appendChild(img);
+            card.appendChild(description);
         });
     } else {
         console.error("data wasn't read well");
